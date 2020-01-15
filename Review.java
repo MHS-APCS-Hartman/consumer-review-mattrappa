@@ -165,4 +165,43 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  
+  //returns the sum of all sentiment values for each word of the review, removing punctuation
+  public static double totalSentiment(String fileName)
+  {
+   String review = fileName;
+   String word = "";
+   double total = 0;
+   for (int i = 0; i < review.length(); i++)
+   {
+      if (review.substring(i, i+1).equals(" ") == false)
+      {
+         word += review.substring(i, i+1);
+      }
+      else
+      {
+         total += sentimentVal(removePunctuation(word));
+         word = "";
+      }
+   }
+   total += sentimentVal(removePunctuation(word));
+   return total;
+  }
+  
+  /**
+   * Returns the word after removing any beginning or ending punctuation
+   */
+  public static String removePunctuation( String word )
+  {
+    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(0)))
+    {
+      word = word.substring(1);
+    }
+    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(word.length()-1)))
+    {
+      word = word.substring(0, word.length()-1);
+    }
+    
+    return word;
+  }
 }
