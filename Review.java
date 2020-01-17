@@ -204,4 +204,29 @@ public class Review {
     
     return word;
   }
+  
+  //returns a value corresponding to the totalSentiment() method, respresents how positive the review is
+  public static int starRating(String fileName)
+  {
+      if (totalSentiment(fileName) <= -1)
+      {
+            return 1;
+      }
+      else if (totalSentiment(fileName) <= 0)
+      {
+            return 2;
+      }
+      else if (totalSentiment(fileName) <= 4)
+      {
+            return 3;
+      }
+      else if (totalSentiment(fileName) <= 8)
+      {
+            return 4;
+      }
+      else
+      {
+            return 5;
+      }
+ }
 }
