@@ -229,4 +229,45 @@ public class Review {
             return 5;
       }
  }
+  
+  /*
+  Replaces the adjectives in a review with random positive ones from the list 
+  positiveAdjectives.txt assuming they have a "*" as the first character
+  */
+  public static String fakeReview(String fileName)
+   {
+      String word = "";
+      String newReview = "";
+      String review = textToString(fileName);
+      for (int i = 0; i < review.length(); i++)
+      {
+         if (((review.substring(i, i+1).equals(" ")) || (i == review.length()-1)) == false)
+         {
+            word += review.substring(i, i+1);
+         }
+         else if (i == review.length()-1)
+         {
+            word += review.substring(review.length()-1, review.length());
+            if (word.substring(0, 1).equals("*"))
+            {
+               newReview += randomPositiveAdj() + getPunctuation(word);
+            }
+            else
+            {
+               newReview += word;
+            }
+         }
+         else if (word.substring(0, 1).equals("*"))
+         {
+            newReview += randomPositiveAdj() + getPunctuation(word) + " ";
+            word = "";
+         }
+         else
+         {
+            newReview += word + " ";
+            word = "";
+         }
+      }
+   return newReview;
+   }
 }
