@@ -174,6 +174,7 @@ public class Review {
    double total = 0;
    for (int i = 0; i < review.length(); i++)
    {
+      //traverses through the input review, gets sentiment value for each word and adds to the total sentiment
       if (review.substring(i, i+1).equals(" ") == false)
       {
          word += review.substring(i, i+1);
@@ -241,10 +242,12 @@ public class Review {
       String review = textToString(fileName);
       for (int i = 0; i < review.length(); i++)
       {
+        //isolates each word based on spaces, or the end of the string
          if (((review.substring(i, i+1).equals(" ")) || (i == review.length()-1)) == false)
          {
             word += review.substring(i, i+1);
          }
+        //allows for the ending punctuation to be preserved
          else if (i == review.length()-1)
          {
             word += review.substring(review.length()-1, review.length());
@@ -257,11 +260,13 @@ public class Review {
                newReview += word;
             }
          }
+        //replaces any word starting with "*" with a random adjective
          else if (word.substring(0, 1).equals("*"))
          {
             newReview += randomPositiveAdj() + getPunctuation(word) + " ";
             word = "";
          }
+        //adds normal words back to the review untouched
          else
          {
             newReview += word + " ";
@@ -272,8 +277,8 @@ public class Review {
    }
   
   /*
-  Returns a fake review with random repeating adjectives instead of just one. This follows the same structure as 
-  the fakeReview() method
+  Returns a fake review with random repeating adjectives instead of just one. This follows the same structure 
+  and pseudocode as the fakeReview() method
   */
   public static String fakeReviewStronger(String fileName)
    {
