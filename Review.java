@@ -169,7 +169,7 @@ public class Review {
   //returns the sum of all sentiment values for each word of the review, removing punctuation
   public static double totalSentiment(String fileName)
   {
-   String review = fileName;
+   String review = textToString(fileName);
    String word = "";
    double total = 0;
    for (int i = 0; i < review.length(); i++)
